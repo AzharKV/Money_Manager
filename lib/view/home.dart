@@ -5,8 +5,8 @@ import 'package:day_manager/customWidgets/buttons/textButton.dart';
 import 'package:day_manager/view/transactionDetail.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'homePage.dart';
-import 'reportPage.dart';
+import 'homeScreen.dart';
+import 'reportScreen.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class Home extends StatelessWidget {
         Provider.of<TransactionDetailController>(context);
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: whiteColor,
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
         child: Padding(
@@ -74,7 +74,7 @@ class Home extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 20.0),
-          child: homeController.buttonSelected ? HomePage() : ReportPage(),
+          child: homeController.buttonSelected ? HomeScreen() : ReportScreen(),
         ),
       ),
     );

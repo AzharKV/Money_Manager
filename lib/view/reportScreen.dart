@@ -7,8 +7,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
 
-class ReportPage extends StatelessWidget {
-  const ReportPage({Key? key}) : super(key: key);
+class ReportScreen extends StatelessWidget {
+  const ReportScreen({Key? key}) : super(key: key);
   static ReportController? reportController;
 
   @override
@@ -20,7 +20,7 @@ class ReportPage extends StatelessWidget {
         Container(
           padding: EdgeInsets.all(5.0),
           decoration: BoxDecoration(
-              color: Color(0xFFf7f6f9),
+              color: tabContainer,
               borderRadius: BorderRadius.all(Radius.circular(20.0))),
           child: Row(
             children: [
@@ -28,32 +28,32 @@ class ReportPage extends StatelessWidget {
                   reportController: reportController ?? ReportController(),
                   text: allReport,
                   containerColor: reportController!.reportMethod == allReport
-                      ? Color(0xd05c02d0)
+                      ? primaryColor
                       : Colors.transparent,
                   textColor: reportController!.reportMethod == allReport
-                      ? Colors.white
-                      : Color(0xFFd3d3d3),
+                      ? whiteColor
+                      : categoryText,
                   onPress: () => reportController!.cartButton(allReport)),
               categorySelector(
                   reportController: reportController ?? ReportController(),
                   text: incomeReport,
                   containerColor: reportController!.reportMethod == incomeReport
-                      ? Color(0xd05c02d0)
+                      ? primaryColor
                       : Colors.transparent,
                   textColor: reportController!.reportMethod == incomeReport
-                      ? Colors.white
-                      : Color(0xFFd3d3d3),
+                      ? whiteColor
+                      : categoryText,
                   onPress: () => reportController!.cartButton(incomeReport)),
               categorySelector(
                   reportController: reportController ?? ReportController(),
                   text: expenseReport,
                   containerColor:
                       reportController!.reportMethod == expenseReport
-                          ? Color(0xd05c02d0)
+                          ? primaryColor
                           : Colors.transparent,
                   textColor: reportController!.reportMethod == expenseReport
-                      ? Colors.white
-                      : Color(0xFFd3d3d3),
+                      ? whiteColor
+                      : categoryText,
                   onPress: () => reportController!.cartButton(expenseReport)),
               IconButton(
                   icon: Icon(Icons.calendar_today),
@@ -119,7 +119,7 @@ class ReportPage extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white)),
+                        color: whiteColor)),
                 SizedBox(height: 10.0),
                 Row(
                   children: [
@@ -127,16 +127,14 @@ class ReportPage extends StatelessWidget {
                       child: Text(
                           "Income:\n${reportController!.totalIncome.toStringAsFixed(1)}",
                           textAlign: TextAlign.center,
-                          style:
-                              TextStyle(fontSize: 20.0, color: Colors.white)),
+                          style: TextStyle(fontSize: 20.0, color: whiteColor)),
                     ),
                     SizedBox(width: 10),
                     Expanded(
                       child: Text(
                           "Expense:\n-${reportController!.totalExpense.toStringAsFixed(1)}",
                           textAlign: TextAlign.center,
-                          style:
-                              TextStyle(fontSize: 20.0, color: Colors.white)),
+                          style: TextStyle(fontSize: 20.0, color: whiteColor)),
                     ),
                   ],
                 ),
@@ -240,13 +238,13 @@ class ReportPage extends StatelessWidget {
         width: 50.0,
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: [BoxShadow(color: Colors.black)],
+            color: whiteColor,
+            boxShadow: [BoxShadow(color: blackColor)],
             borderRadius: BorderRadius.all(Radius.circular(10.0))),
         child: SvgPicture.asset(
           svgPath(svgName),
           height: 35.0,
-          color: Color(0xFF5818a6).withOpacity(0.8),
+          color: svgColor,
         ),
       ),
       subtitle: reportController!.reportMethod == allReport
@@ -254,9 +252,9 @@ class ReportPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text("Income: ${incomeAmount.toStringAsFixed(1)}",
-                    style: TextStyle(color: Colors.green)),
+                    style: TextStyle(color: incomeGreen)),
                 Text("Expense: ${expenseAmount.toStringAsFixed(1)}",
-                    style: TextStyle(color: Colors.red)),
+                    style: TextStyle(color: expenseRed)),
               ],
             )
           : Text("Percentage : ${percentage.toStringAsFixed(1)}%"),
@@ -264,10 +262,10 @@ class ReportPage extends StatelessWidget {
           style: TextStyle(
               fontWeight: FontWeight.bold,
               color: reportController!.reportMethod == incomeReport
-                  ? Colors.green
+                  ? incomeGreen
                   : reportController!.reportMethod == expenseReport
-                      ? Colors.red
-                      : Colors.black)),
+                      ? expenseRed
+                      : blackColor)),
     );
   }
 

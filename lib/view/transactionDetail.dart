@@ -24,7 +24,7 @@ class TransactionDetail extends StatelessWidget {
     reportController = Provider.of<ReportController>(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: whiteColor,
         elevation: 0.0,
         leadingWidth: 25.0,
         title: Row(
@@ -57,12 +57,12 @@ class TransactionDetail extends StatelessWidget {
                         transactionDetailController!.savedTransaction
                             ? "Update"
                             : "Save",
-                        style: TextStyle(color: Colors.white))),
+                        style: TextStyle(color: whiteColor))),
               ),
             ],
           )
         ],
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: IconThemeData(color: blackColor),
       ),
       body: Column(
         children: [
@@ -180,7 +180,7 @@ class TransactionDetail extends StatelessWidget {
                             child: SvgPicture.asset(
                               transactionDetailController!.titleIcon(),
                               height: 5.0,
-                              color: Colors.white,
+                              color: whiteColor,
                             ),
                           ),
                           border: InputBorder.none),
@@ -242,7 +242,7 @@ class TransactionDetail extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
-              color: isSelected ? Color(0xFFeae1f9) : Colors.transparent,
+              color: isSelected ? Color(0xffeae1f9) : Colors.transparent,
               borderRadius: BorderRadius.all(Radius.circular(15.0))),
           child: Column(
             children: [
@@ -250,12 +250,12 @@ class TransactionDetail extends StatelessWidget {
                 child: SvgPicture.asset(
                   svgPath(svgName),
                   height: 35.0,
-                  color: Color(0xFF5818a6).withOpacity(0.8),
+                  color: svgColor,
                 ),
               ),
               Text(
                 text,
-                style: TextStyle(color: Color(0xFF5818a6), fontSize: 16),
+                style: TextStyle(color: svgColor, fontSize: 16),
                 textAlign: TextAlign.center,
               )
             ],

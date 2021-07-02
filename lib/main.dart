@@ -7,9 +7,7 @@ import 'controller/transactionDetailController.dart';
 import 'controller/homeController.dart';
 import 'view/home.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override

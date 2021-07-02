@@ -25,9 +25,9 @@ class TransactionList extends StatelessWidget {
         title: Text("Day Manager", style: TextStyle(color: primaryColor)),
         centerTitle: true,
         backwardsCompatibility: true,
-        backgroundColor: Colors.white,
+        backgroundColor: whiteColor,
         elevation: 0.0,
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: IconThemeData(color: blackColor),
       ),
       body: transactionController.transactionList.length == 0
           ? Center(child: Text("No Records"))
@@ -40,7 +40,7 @@ class TransactionList extends StatelessWidget {
 
                 String amountSign = data!.isIncome == 1 ? "+" : "-";
                 Color amountColor =
-                    data.isIncome == 1 ? Colors.green : Colors.red;
+                    data.isIncome == 1 ? incomeGreen : expenseRed;
 
                 return ListTile(
                   onTap: () {
@@ -67,13 +67,13 @@ class TransactionList extends StatelessWidget {
                     width: 50.0,
                     padding: EdgeInsets.all(10.0),
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [BoxShadow(color: Colors.black)],
+                        color: whiteColor,
+                        boxShadow: [BoxShadow(color: blackColor)],
                         borderRadius: BorderRadius.all(Radius.circular(10.0))),
                     child: SvgPicture.asset(
                       transactionController.tileIcon(data.category ?? others),
                       height: 35.0,
-                      color: Color(0xFF5818a6).withOpacity(0.8),
+                      color: svgColor,
                     ),
                   ),
                   subtitle: Column(
@@ -93,8 +93,7 @@ class TransactionList extends StatelessWidget {
                       transactionController.fetchTransaction();
                       reportController.fetchTransaction();
                     },
-                    icon: Icon(Icons.delete_outline,
-                        color: Color(0xFF5818a6).withOpacity(0.8)),
+                    icon: Icon(Icons.delete_outline, color: svgColor),
                   ),
                 );
               },

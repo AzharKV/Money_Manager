@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   static File? imageFile;
 
   @override
@@ -39,7 +39,7 @@ class HomePage extends StatelessWidget {
                         color: profileContainer,
                         borderRadius: BorderRadius.all(Radius.circular(10.0))),
                     child: imageFile == null
-                        ? Icon(Icons.person, size: 35, color: Color(0xFF6F4C55))
+                        ? Icon(Icons.person, size: 35, color: profileBG)
                         : Image.file(imageFile!, fit: BoxFit.contain),
                   ),
                   SizedBox(width: 15.0),
@@ -82,18 +82,18 @@ class HomePage extends StatelessWidget {
                   children: [
                     Text("Total Balance",
                         style: TextStyle(
-                            color: Colors.white,
+                            color: whiteColor,
                             fontSize: 22,
                             fontWeight: FontWeight.bold)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("INR", style: TextStyle(color: Color(0xFF9C79CD))),
+                        Text("INR", style: TextStyle(color: textINRColor)),
                         Expanded(
                           child: AutoSizeText(
                               transactionController.total.toStringAsFixed(1),
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: whiteColor,
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold),
                               maxLines: 2,
@@ -104,7 +104,7 @@ class HomePage extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                          color: Color(0xFF6E0BEC),
+                          color: containerColor,
                           borderRadius:
                               BorderRadius.all(Radius.circular(20.0))),
                       child: Row(
@@ -117,10 +117,9 @@ class HomePage extends StatelessWidget {
                                 Row(
                                   children: [
                                     Icon(Icons.arrow_downward,
-                                        color: Color(0xFF53B071)),
+                                        color: incomeGreen),
                                     Text("Income",
-                                        style: TextStyle(
-                                            color: Color(0xFFD5C2EF))),
+                                        style: TextStyle(color: containerText)),
                                   ],
                                 ),
                                 Center(
@@ -128,7 +127,7 @@ class HomePage extends StatelessWidget {
                                     transactionController.totalIncome
                                         .toStringAsFixed(1),
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 20),
+                                        color: whiteColor, fontSize: 20),
                                     maxLines: 2,
                                     textAlign: TextAlign.center,
                                   ),
@@ -138,7 +137,7 @@ class HomePage extends StatelessWidget {
                           ),
                           Container(
                             margin: EdgeInsets.symmetric(horizontal: 10.0),
-                            color: Color(0xFFD5C2EF),
+                            color: containerText,
                             width: 2,
                             height: 50.0,
                           ),
@@ -148,11 +147,9 @@ class HomePage extends StatelessWidget {
                               children: [
                                 Row(
                                   children: [
-                                    Icon(Icons.arrow_upward,
-                                        color: Color(0xFFF85D69)),
+                                    Icon(Icons.arrow_upward, color: expenseRed),
                                     Text("Expense",
-                                        style: TextStyle(
-                                            color: Color(0xFFD5C2EF))),
+                                        style: TextStyle(color: containerText)),
                                   ],
                                 ),
                                 Center(
@@ -160,7 +157,7 @@ class HomePage extends StatelessWidget {
                                     transactionController.totalExpense
                                         .toStringAsFixed(1),
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 20),
+                                        color: whiteColor, fontSize: 20),
                                     maxLines: 2,
                                     textAlign: TextAlign.center,
                                   ),
@@ -218,27 +215,25 @@ class HomePage extends StatelessWidget {
 
                             String amountSign = data!.isIncome == 1 ? "+" : "-";
                             Color amountColor =
-                                data.isIncome == 1 ? Colors.green : Colors.red;
+                                data.isIncome == 1 ? incomeGreen : expenseRed;
 
                             return ListTile(
-                              onTap: ()  {
-                               transactionDetailController
-                                    .toTransactionDetail(
-                                        isSaved: true,
-                                        id: data.id,
-                                        title: data.title,
-                                        description: data.description,
-                                        amount: data.amount,
-                                        department: data.category,
-                                        isIncome:
-                                            data.isIncome == 1 ? true : false,
-                                        dateTime: data.dateTime);
+                              onTap: () {
+                                transactionDetailController.toTransactionDetail(
+                                    isSaved: true,
+                                    id: data.id,
+                                    title: data.title,
+                                    description: data.description,
+                                    amount: data.amount,
+                                    department: data.category,
+                                    isIncome: data.isIncome == 1 ? true : false,
+                                    dateTime: data.dateTime);
 
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              TransactionDetail()));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            TransactionDetail()));
                               },
                               title: Text(data.title ?? ""),
                               contentPadding: EdgeInsets.all(10.0),
@@ -247,15 +242,15 @@ class HomePage extends StatelessWidget {
                                 width: 50.0,
                                 padding: EdgeInsets.all(10.0),
                                 decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    boxShadow: [BoxShadow(color: Colors.black)],
+                                    color: whiteColor,
+                                    boxShadow: [BoxShadow(color: blackColor)],
                                     borderRadius: BorderRadius.all(
                                         Radius.circular(10.0))),
                                 child: SvgPicture.asset(
                                   transactionController
                                       .tileIcon(data.category ?? others),
                                   height: 35.0,
-                                  color: Color(0xFF5818a6).withOpacity(0.8),
+                                  color: svgColor,
                                 ),
                               ),
                               subtitle: Text(dateConvert(DateTime.parse(
