@@ -36,25 +36,25 @@ class ReportScreen extends StatelessWidget {
                   onPress: () => reportController!.cartButton(allReport)),
               categorySelector(
                   reportController: reportController ?? ReportController(),
-                  text: incomeReport,
-                  containerColor: reportController!.reportMethod == incomeReport
+                  text: income,
+                  containerColor: reportController!.reportMethod == income
                       ? primaryColor
                       : Colors.transparent,
-                  textColor: reportController!.reportMethod == incomeReport
+                  textColor: reportController!.reportMethod == income
                       ? whiteColor
                       : categoryText,
-                  onPress: () => reportController!.cartButton(incomeReport)),
+                  onPress: () => reportController!.cartButton(income)),
               categorySelector(
                   reportController: reportController ?? ReportController(),
-                  text: expenseReport,
+                  text: expense,
                   containerColor:
-                      reportController!.reportMethod == expenseReport
+                      reportController!.reportMethod == expense
                           ? primaryColor
                           : Colors.transparent,
-                  textColor: reportController!.reportMethod == expenseReport
+                  textColor: reportController!.reportMethod == expense
                       ? whiteColor
                       : categoryText,
-                  onPress: () => reportController!.cartButton(expenseReport)),
+                  onPress: () => reportController!.cartButton(expense)),
               IconButton(
                   icon: Icon(Icons.calendar_today),
                   onPressed: () async {
@@ -214,13 +214,13 @@ class ReportScreen extends StatelessWidget {
   }) {
     double percentage = 0;
     String trailingAmount = "0.0";
-    if (reportController!.reportMethod == incomeReport) {
+    if (reportController!.reportMethod == income) {
       percentage = incomeAmount / reportController!.totalIncome * 100;
       if (incomeAmount != 0)
         trailingAmount = "+${incomeAmount.toStringAsFixed(1)}";
     }
 
-    if (reportController!.reportMethod == expenseReport) {
+    if (reportController!.reportMethod == expense) {
       percentage = expenseAmount / reportController!.totalExpense * 100;
       if (expenseAmount != 0)
         trailingAmount = "-${expenseAmount.toStringAsFixed(1)}";
@@ -251,9 +251,9 @@ class ReportScreen extends StatelessWidget {
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Income: ${incomeAmount.toStringAsFixed(1)}",
+                Text("$income: ${incomeAmount.toStringAsFixed(1)}",
                     style: TextStyle(color: incomeGreen)),
-                Text("Expense: ${expenseAmount.toStringAsFixed(1)}",
+                Text("$expense: ${expenseAmount.toStringAsFixed(1)}",
                     style: TextStyle(color: expenseRed)),
               ],
             )
@@ -261,9 +261,9 @@ class ReportScreen extends StatelessWidget {
       trailing: Text(trailingAmount,
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: reportController!.reportMethod == incomeReport
+              color: reportController!.reportMethod == income
                   ? incomeGreen
-                  : reportController!.reportMethod == expenseReport
+                  : reportController!.reportMethod == expense
                       ? expenseRed
                       : blackColor)),
     );
@@ -294,8 +294,8 @@ class ReportScreen extends StatelessWidget {
   }
 
   double chartValue(double income, double expense) {
-    if (reportController!.reportMethod == incomeReport) return income;
-    if (reportController!.reportMethod == expenseReport) return expense;
+    if (reportController!.reportMethod == income) return income;
+    if (reportController!.reportMethod == expense) return expense;
     return income - expense;
   }
 }

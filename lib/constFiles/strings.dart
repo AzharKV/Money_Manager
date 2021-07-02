@@ -27,7 +27,7 @@ String devicesSvg = 'devices';
 String officeSvg = 'office-building';
 String othersSvg = 'ellipsis';
 
-//report methods
+// methods
 String allReport = "All";
-String incomeReport = "Income";
-String expenseReport = "Expense";
+String income = "Income";
+String expense = "Expense";

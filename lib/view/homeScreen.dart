@@ -118,7 +118,7 @@ class HomeScreen extends StatelessWidget {
                                   children: [
                                     Icon(Icons.arrow_downward,
                                         color: incomeGreen),
-                                    Text("Income",
+                                    Text(income,
                                         style: TextStyle(color: containerText)),
                                   ],
                                 ),
@@ -148,7 +148,7 @@ class HomeScreen extends StatelessWidget {
                                 Row(
                                   children: [
                                     Icon(Icons.arrow_upward, color: expenseRed),
-                                    Text("Expense",
+                                    Text(expense,
                                         style: TextStyle(color: containerText)),
                                   ],
                                 ),
@@ -253,7 +253,7 @@ class HomeScreen extends StatelessWidget {
                                   color: svgColor,
                                 ),
                               ),
-                              subtitle: Text(dateConvert(DateTime.parse(
+                              subtitle: Text(dateConverter(DateTime.parse(
                                   data.dateTime ?? "2000-01-1 00:00:00.000"))),
                               trailing: Text(
                                 "$amountSign${data.amount}",

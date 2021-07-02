@@ -79,7 +79,7 @@ class TransactionList extends StatelessWidget {
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(dateConvert(DateTime.parse(
+                      Text(dateConverter(DateTime.parse(
                           data.dateTime ?? "2000-01-1 00:00:00.000"))),
                       Text(
                         "$amountSign${data.amount}",

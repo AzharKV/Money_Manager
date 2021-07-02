@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
 
-String dateConvert(DateTime dateTime) {
+String dateConverter(DateTime dateTime) {
   DateTime formattedDate =
       DateTime(dateTime.year, dateTime.month, dateTime.day);
 

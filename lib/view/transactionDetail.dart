@@ -31,8 +31,8 @@ class TransactionDetail extends StatelessWidget {
           children: [
             Text(
               transactionDetailController!.isIncomeSelected
-                  ? "Income"
-                  : "Expense",
+                  ? income
+                  : expense,
               style:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             ),

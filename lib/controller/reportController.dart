@@ -10,7 +10,7 @@ class ReportController with ChangeNotifier {
     if (databaseHelper != null) fetchTransaction();
   }
 
-  String reportMethod = incomeReport;
+  String reportMethod = income;
 
   List<TransactionModel?> transactionList = [];
   List<TransactionModel?> transactionIncomeList = [];
