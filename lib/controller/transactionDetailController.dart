@@ -9,8 +9,6 @@ class TransactionDetailController with ChangeNotifier {
   TextEditingController amountField = TextEditingController();
   TextEditingController descriptionField = TextEditingController();
 
-  
-
   bool isIncomeSelected = false;
   bool savedTransaction = false;
 
@@ -18,6 +16,13 @@ class TransactionDetailController with ChangeNotifier {
 
   int? transactionId;
   String? date;
+
+  bool buttonSelected = true;
+
+  void changeButton(bool value) {
+    buttonSelected = value;
+    notifyListeners();
+  }
 
   void changeCategory() {
     isIncomeSelected = !isIncomeSelected;

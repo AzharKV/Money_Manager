@@ -1,7 +1,6 @@
 import 'package:day_manager/constFiles/colors.dart';
-import 'package:day_manager/controller/homeController.dart';
 import 'package:day_manager/controller/transactionDetailController.dart';
-import 'package:day_manager/customWidgets/buttons/textButton.dart';
+import 'package:day_manager/customWidgets/textButton.dart';
 import 'package:day_manager/view/transactionDetail.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +17,7 @@ class Home extends StatelessWidget {
     //write rebuild when changes
     //HomeController providerWatch = Provider.of<HomeController>(context);
 
-    HomeController homeController = Provider.of<HomeController>(context);
+
     TransactionDetailController transactionDetailController =
         Provider.of<TransactionDetailController>(context);
 
@@ -33,25 +32,25 @@ class Home extends StatelessWidget {
             children: <Widget>[
               CustomTextButton(
                 text: "Home",
-                textColor: homeController.buttonSelected
+                textColor: transactionDetailController.buttonSelected
                     ? selectedTextButton
                     : nonSelectedTextButton,
                 splash: false,
                 press: () {
-                  if (!homeController.buttonSelected)
-                    homeController.changeButton(true);
+                  if (!transactionDetailController.buttonSelected)
+                    transactionDetailController.changeButton(true);
                 },
               ),
               SizedBox(width: 10.0),
               CustomTextButton(
                 text: "Report",
-                textColor: homeController.buttonSelected
+                textColor: transactionDetailController.buttonSelected
                     ? nonSelectedTextButton
                     : selectedTextButton,
                 splash: false,
                 press: () {
-                  if (homeController.buttonSelected)
-                    homeController.changeButton(false);
+                  if (transactionDetailController.buttonSelected)
+                    transactionDetailController.changeButton(false);
                 },
               ),
             ],
@@ -74,7 +73,7 @@ class Home extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 20.0),
-          child: homeController.buttonSelected ? HomeScreen() : ReportScreen(),
+          child: transactionDetailController.buttonSelected ? HomeScreen() : ReportScreen(),
         ),
       ),
     );

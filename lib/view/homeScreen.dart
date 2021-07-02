@@ -5,7 +5,7 @@ import 'package:day_manager/constFiles/dateConvert.dart';
 import 'package:day_manager/constFiles/strings.dart';
 import 'package:day_manager/controller/transactionController.dart';
 import 'package:day_manager/controller/transactionDetailController.dart';
-import 'package:day_manager/customWidgets/buttons/textButton.dart';
+import 'package:day_manager/customWidgets/textButton.dart';
 import 'package:day_manager/model/transactionModel.dart';
 import 'package:day_manager/view/transactionDetail.dart';
 import 'package:day_manager/view/transactionList.dart';

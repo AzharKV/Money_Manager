@@ -47,10 +47,9 @@ class ReportScreen extends StatelessWidget {
               categorySelector(
                   reportController: reportController ?? ReportController(),
                   text: expense,
-                  containerColor:
-                      reportController!.reportMethod == expense
-                          ? primaryColor
-                          : Colors.transparent,
+                  containerColor: reportController!.reportMethod == expense
+                      ? primaryColor
+                      : Colors.transparent,
                   textColor: reportController!.reportMethod == expense
                       ? whiteColor
                       : categoryText,
@@ -132,7 +131,7 @@ class ReportScreen extends StatelessWidget {
                     SizedBox(width: 10),
                     Expanded(
                       child: Text(
-                          "Expense:\n-${reportController!.totalExpense.toStringAsFixed(1)}",
+                          "Expense:\n${reportController!.totalExpense.toStringAsFixed(1)}",
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 20.0, color: whiteColor)),
                     ),
@@ -257,7 +256,8 @@ class ReportScreen extends StatelessWidget {
                     style: TextStyle(color: expenseRed)),
               ],
             )
-          : Text("Percentage : ${percentage.toStringAsFixed(1)}%"),
+          : Text(
+              "Percentage : ${percentage > 0 ? percentage.toStringAsFixed(1) : 0}%"),
       trailing: Text(trailingAmount,
           style: TextStyle(
               fontWeight: FontWeight.bold,
@@ -293,9 +293,9 @@ class ReportScreen extends StatelessWidget {
     );
   }
 
-  double chartValue(double income, double expense) {
-    if (reportController!.reportMethod == income) return income;
-    if (reportController!.reportMethod == expense) return expense;
-    return income - expense;
+  double chartValue(double incomeAmount, double expenseAmount) {
+    if (reportController!.reportMethod == income) return incomeAmount;
+    if (reportController!.reportMethod == expense) return expenseAmount;
+    return incomeAmount - expenseAmount;
   }
 }
