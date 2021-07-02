@@ -1,3 +1,4 @@
+import 'package:day_manager/components/categorySelectHeader.dart';
 import 'package:day_manager/constFiles/colors.dart';
 import 'package:day_manager/constFiles/strings.dart';
 import 'package:day_manager/controller/reportController.dart';
@@ -17,59 +18,11 @@ class ReportScreen extends StatelessWidget {
 
     return Column(
       children: [
-        Container(
-          padding: EdgeInsets.all(5.0),
-          decoration: BoxDecoration(
-              color: tabContainer,
-              borderRadius: BorderRadius.all(Radius.circular(20.0))),
-          child: Row(
-            children: [
-              categorySelector(
-                  reportController: reportController ?? ReportController(),
-                  text: allReport,
-                  containerColor: reportController!.reportMethod == allReport
-                      ? primaryColor
-                      : Colors.transparent,
-                  textColor: reportController!.reportMethod == allReport
-                      ? whiteColor
-                      : categoryText,
-                  onPress: () => reportController!.cartButton(allReport)),
-              categorySelector(
-                  reportController: reportController ?? ReportController(),
-                  text: income,
-                  containerColor: reportController!.reportMethod == income
-                      ? primaryColor
-                      : Colors.transparent,
-                  textColor: reportController!.reportMethod == income
-                      ? whiteColor
-                      : categoryText,
-                  onPress: () => reportController!.cartButton(income)),
-              categorySelector(
-                  reportController: reportController ?? ReportController(),
-                  text: expense,
-                  containerColor: reportController!.reportMethod == expense
-                      ? primaryColor
-                      : Colors.transparent,
-                  textColor: reportController!.reportMethod == expense
-                      ? whiteColor
-                      : categoryText,
-                  onPress: () => reportController!.cartButton(expense)),
-              IconButton(
-                  icon: Icon(Icons.calendar_today),
-                  onPressed: () async {
-                    DateTimeRange? picked = await showDateRangePicker(
-                        context: context,
-                        firstDate: new DateTime(2015),
-                        lastDate: new DateTime(DateTime.now().year + 10));
-                    if (picked != null)
-                      reportController!.fetchTransaction(
-                          customFromDate: picked.start,
-                          customToDate: picked.end);
-                  })
-            ],
-          ),
-        ),
-        if (reportController!.reportMethod != allReport)
+        //category selector
+        CategorySelectHeader(),
+
+        //pie chart, if not full report
+        if (reportController!.reportMethod != fullReport)
           Padding(
             padding: const EdgeInsets.only(top: 20, left: 20),
             child: PieChart(
@@ -105,7 +58,9 @@ class ReportScreen extends StatelessWidget {
               ),
             ),
           ),
-        if (reportController!.reportMethod == allReport)
+
+        //balance container, if full report
+        if (reportController!.reportMethod == fullReport)
           Container(
             decoration: BoxDecoration(
                 color: primaryColor.withOpacity(0.85),
@@ -140,6 +95,8 @@ class ReportScreen extends StatelessWidget {
               ],
             ),
           ),
+
+        //category list
         Expanded(
           child: ListView(
             physics: BouncingScrollPhysics(),
@@ -225,7 +182,7 @@ class ReportScreen extends StatelessWidget {
         trailingAmount = "-${expenseAmount.toStringAsFixed(1)}";
     }
 
-    if (reportController!.reportMethod == allReport) {
+    if (reportController!.reportMethod == fullReport) {
       trailingAmount = (incomeAmount - expenseAmount).toStringAsFixed(1);
     }
 
@@ -246,7 +203,7 @@ class ReportScreen extends StatelessWidget {
           color: svgColor,
         ),
       ),
-      subtitle: reportController!.reportMethod == allReport
+      subtitle: reportController!.reportMethod == fullReport
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -266,30 +223,6 @@ class ReportScreen extends StatelessWidget {
                   : reportController!.reportMethod == expense
                       ? expenseRed
                       : blackColor)),
-    );
-  }
-
-  Expanded categorySelector(
-      {required ReportController reportController,
-      required String text,
-      required Function() onPress,
-      required Color textColor,
-      required Color containerColor}) {
-    return Expanded(
-      child: InkWell(
-        onTap: onPress,
-        child: Container(
-          padding: EdgeInsets.all(15.0),
-          decoration: BoxDecoration(
-              color: containerColor,
-              borderRadius: BorderRadius.all(Radius.circular(15.0))),
-          alignment: Alignment.center,
-          child: Text(
-            text,
-            style: TextStyle(color: textColor, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ),
     );
   }
 

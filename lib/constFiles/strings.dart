@@ -28,6 +28,6 @@ String officeSvg = 'office-building';
 String othersSvg = 'ellipsis';
 
 // methods
-String allReport = "All";
+String fullReport = "All";
 String income = "Income";
 String expense = "Expense";

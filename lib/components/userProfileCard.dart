@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:day_manager/constFiles/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +33,7 @@ class UserProfileCard extends StatelessWidget {
                       TextStyle(color: greyText, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  "Mohammed Azhar",
+                  "Nancy Lee",
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
