@@ -12,15 +12,14 @@ import 'package:provider/provider.dart';
 
 class TransactionDetail extends StatelessWidget {
   TransactionDetail({Key? key}) : super(key: key);
-  static TransDetailController? transactionDetailController;
-  static TransactionController? transactionController;
+  static TransDetailController? transDetailController;
+  static TransactionController? transController;
   static ReportController? reportController;
 
   @override
   Widget build(BuildContext context) {
-    transactionDetailController =
-        Provider.of<TransDetailController>(context);
-    transactionController = Provider.of<TransactionController>(context);
+    transDetailController = Provider.of<TransDetailController>(context);
+    transController = Provider.of<TransactionController>(context);
     reportController = Provider.of<ReportController>(context);
     return Scaffold(
       appBar: AppBar(
@@ -30,16 +29,14 @@ class TransactionDetail extends StatelessWidget {
         title: Row(
           children: [
             Text(
-              transactionDetailController!.isIncomeSelected
-                  ? income
-                  : expense,
+              transDetailController!.isIncomeSelected ? income : expense,
               style:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             ),
             IconButton(
                 icon: Icon(Icons.refresh_outlined),
                 tooltip: "Change Category",
-                onPressed: () => transactionDetailController!.changeCategory())
+                onPressed: () => transDetailController!.changeCategory())
           ],
         ),
         actions: [
@@ -54,7 +51,7 @@ class TransactionDetail extends StatelessWidget {
                 child: TextButton(
                     onPressed: () => save(context),
                     child: Text(
-                        transactionDetailController!.savedTransaction
+                        transDetailController!.savedTransaction
                             ? "Update"
                             : "Save",
                         style: TextStyle(color: whiteColor))),
@@ -70,91 +67,86 @@ class TransactionDetail extends StatelessWidget {
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              childAspectRatio: 1.4,
-            ),
+                crossAxisCount: 3, childAspectRatio: 1.4),
             children: [
               categoryIcons(
                   text: health,
                   svgName: healthSvg,
                   isSelected:
-                      transactionDetailController!.selectedDepartment == health
+                      transDetailController!.selectedDepartment == health
                           ? true
                           : false,
                   onPress: () =>
-                      transactionDetailController!.changeDepartment(health)),
+                      transDetailController!.changeDepartment(health)),
               categoryIcons(
                   text: family,
                   svgName: familySvg,
                   isSelected:
-                      transactionDetailController!.selectedDepartment == family
+                      transDetailController!.selectedDepartment == family
                           ? true
                           : false,
                   onPress: () =>
-                      transactionDetailController!.changeDepartment(family)),
+                      transDetailController!.changeDepartment(family)),
               categoryIcons(
                   text: shopping,
                   svgName: shoppingSvg,
-                  isSelected: transactionDetailController!.selectedDepartment ==
-                          shopping
-                      ? true
-                      : false,
-                  onPress: () =>
-                      transactionDetailController!.changeDepartment(shopping)),
-              categoryIcons(
-                  text: food,
-                  svgName: foodSvg,
                   isSelected:
-                      transactionDetailController!.selectedDepartment == food
+                      transDetailController!.selectedDepartment == shopping
                           ? true
                           : false,
                   onPress: () =>
-                      transactionDetailController!.changeDepartment(food)),
+                      transDetailController!.changeDepartment(shopping)),
+              categoryIcons(
+                  text: food,
+                  svgName: foodSvg,
+                  isSelected: transDetailController!.selectedDepartment == food
+                      ? true
+                      : false,
+                  onPress: () => transDetailController!.changeDepartment(food)),
               categoryIcons(
                   text: vehicle,
                   svgName: vehicleSvg,
                   isSelected:
-                      transactionDetailController!.selectedDepartment == vehicle
+                      transDetailController!.selectedDepartment == vehicle
                           ? true
                           : false,
                   onPress: () =>
-                      transactionDetailController!.changeDepartment(vehicle)),
+                      transDetailController!.changeDepartment(vehicle)),
               categoryIcons(
                   text: salon,
                   svgName: salonSvg,
-                  isSelected:
-                      transactionDetailController!.selectedDepartment == salon
-                          ? true
-                          : false,
+                  isSelected: transDetailController!.selectedDepartment == salon
+                      ? true
+                      : false,
                   onPress: () =>
-                      transactionDetailController!.changeDepartment(salon)),
+                      transDetailController!.changeDepartment(salon)),
               categoryIcons(
                   text: devices,
                   svgName: devicesSvg,
                   isSelected:
-                      transactionDetailController!.selectedDepartment == devices
+                      transDetailController!.selectedDepartment == devices
                           ? true
                           : false,
                   onPress: () =>
-                      transactionDetailController!.changeDepartment(devices)),
+                      transDetailController!.changeDepartment(devices)),
               categoryIcons(
                   text: office,
                   svgName: officeSvg,
                   isSelected:
-                      transactionDetailController!.selectedDepartment == office
+                      transDetailController!.selectedDepartment == office
                           ? true
                           : false,
                   onPress: () =>
-                      transactionDetailController!.changeDepartment(office)),
+                      transDetailController!.changeDepartment(office)),
               categoryIcons(
                   text: others,
                   svgName: othersSvg,
                   isSelected:
-                      transactionDetailController!.selectedDepartment == others
+                      transDetailController!.selectedDepartment == others
                           ? true
                           : false,
                   onPress: () =>
-                      transactionDetailController!.changeDepartment(others)),
+                      transDetailController!.changeDepartment(others)),
             ],
           ),
           Container(
@@ -165,7 +157,7 @@ class TransactionDetail extends StatelessWidget {
                 Expanded(
                     flex: 5,
                     child: TextField(
-                      controller: transactionDetailController!.titleField,
+                      controller: transDetailController!.titleField,
                       cursorColor: greyText,
                       style: TextStyle(
                           color: greyText,
@@ -178,7 +170,7 @@ class TransactionDetail extends StatelessWidget {
                             padding:
                                 const EdgeInsets.only(right: 15.0, left: 5.0),
                             child: SvgPicture.asset(
-                              transactionDetailController!.titleIcon(),
+                              transDetailController!.titleIcon(),
                               height: 5.0,
                               color: whiteColor,
                             ),
@@ -189,7 +181,7 @@ class TransactionDetail extends StatelessWidget {
                 Expanded(
                     flex: 2,
                     child: TextField(
-                      controller: transactionDetailController!.amountField,
+                      controller: transDetailController!.amountField,
                       textAlign: TextAlign.end,
                       keyboardType: TextInputType.numberWithOptions(
                           decimal: true, signed: false),
@@ -210,7 +202,7 @@ class TransactionDetail extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: TextField(
-                controller: transactionDetailController!.descriptionField,
+                controller: transDetailController!.descriptionField,
                 textAlign: TextAlign.start,
                 minLines: 20,
                 maxLines: 50,
@@ -266,33 +258,33 @@ class TransactionDetail extends StatelessWidget {
   }
 
   save(BuildContext context) {
-    if (transactionDetailController!.titleField.text.isEmpty) {
+    if (transDetailController!.titleField.text.isEmpty) {
       snackBar(context: context, title: "Title Is Mandatory");
-    } else if (double.tryParse(transactionDetailController!.amountField.text) ==
+    } else if (double.tryParse(transDetailController!.amountField.text) ==
             null ||
-        transactionDetailController!.amountField.text.contains("-")) {
+        transDetailController!.amountField.text.contains("-")) {
       snackBar(context: context, title: "Enter Valid Amount");
     } else {
       TransactionModel transactionModel = TransactionModel(
-        id: transactionDetailController!.savedTransaction
-            ? transactionDetailController!.transactionId
+        id: transDetailController!.savedTransaction
+            ? transDetailController!.transactionId
             : DateTime.now().microsecondsSinceEpoch,
-        title: transactionDetailController!.titleField.text,
-        description: transactionDetailController!.descriptionField.text,
-        amount: transactionDetailController!.amountField.text,
-        isIncome: transactionDetailController!.isIncomeSelected ? 1 : 0,
-        category: transactionDetailController!.selectedDepartment,
-        dateTime: transactionDetailController!.savedTransaction
-            ? transactionDetailController!.date
+        title: transDetailController!.titleField.text,
+        description: transDetailController!.descriptionField.text,
+        amount: transDetailController!.amountField.text,
+        isIncome: transDetailController!.isIncomeSelected ? 1 : 0,
+        category: transDetailController!.selectedDepartment,
+        dateTime: transDetailController!.savedTransaction
+            ? transDetailController!.date
             : DateTime.now().toString(),
       );
 
-      if (transactionDetailController!.savedTransaction) {
-        transactionController!.updateTransaction(transactionModel);
+      if (transDetailController!.savedTransaction) {
+        transController!.updateTransaction(transactionModel);
       } else {
-        transactionController!.insertTransaction(transactionModel);
+        transController!.insertTransaction(transactionModel);
       }
-      transactionController!.fetchTransaction();
+      transController!.fetchTransaction();
       reportController!.fetchTransaction();
       Navigator.pop(context);
     }
