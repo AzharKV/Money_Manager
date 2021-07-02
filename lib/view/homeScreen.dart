@@ -4,7 +4,7 @@ import 'package:day_manager/constFiles/colors.dart';
 import 'package:day_manager/constFiles/dateConvert.dart';
 import 'package:day_manager/constFiles/strings.dart';
 import 'package:day_manager/controller/transactionController.dart';
-import 'package:day_manager/controller/transactionDetailController.dart';
+import 'package:day_manager/controller/transDetailController.dart';
 import 'package:day_manager/customWidgets/textButton.dart';
 import 'package:day_manager/model/transactionModel.dart';
 import 'package:day_manager/view/transactionDetail.dart';
@@ -21,8 +21,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     TransactionController transactionController =
         Provider.of<TransactionController>(context);
-    TransactionDetailController transactionDetailController =
-        Provider.of<TransactionDetailController>(context);
+    TransDetailController transactionDetailController =
+        Provider.of<TransDetailController>(context);
 
     return transactionController.fetching
         ? Center(child: CircularProgressIndicator())

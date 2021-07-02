@@ -3,7 +3,7 @@ import 'package:day_manager/constFiles/dateConvert.dart';
 import 'package:day_manager/constFiles/strings.dart';
 import 'package:day_manager/controller/reportController.dart';
 import 'package:day_manager/controller/transactionController.dart';
-import 'package:day_manager/controller/transactionDetailController.dart';
+import 'package:day_manager/controller/transDetailController.dart';
 import 'package:day_manager/model/transactionModel.dart';
 import 'package:day_manager/view/transactionDetail.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +17,8 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     TransactionController transactionController =
         Provider.of<TransactionController>(context);
-    TransactionDetailController transactionDetailController =
-        Provider.of<TransactionDetailController>(context);
+    TransDetailController transactionDetailController =
+        Provider.of<TransDetailController>(context);
     ReportController reportController = Provider.of<ReportController>(context);
     return Scaffold(
       appBar: AppBar(

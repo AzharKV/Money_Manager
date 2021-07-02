@@ -3,7 +3,7 @@ import 'controller/transactionController.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'constFiles/colors.dart';
-import 'controller/transactionDetailController.dart';
+import 'controller/transDetailController.dart';
 import 'view/home.dart';
 
 void main() => runApp(MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => ReportController()),
         ChangeNotifierProvider(create: (_) => TransactionController()),
-        ChangeNotifierProvider(create: (_) => TransactionDetailController()),
+        ChangeNotifierProvider(create: (_) => TransDetailController()),
       ],
       child: MaterialApp(
         title: 'Day Manager',

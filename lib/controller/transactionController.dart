@@ -28,6 +28,7 @@ class TransactionController with ChangeNotifier {
     final dataList = await databaseHelper!.getData(transactionTable);
 
     transactionList = dataList.map((e) => TransactionModel.fromMap(e)).toList();
+
     transactionList.forEach((element) {
       if (element!.isIncome == 1) {
         totalIncome += double.parse(element.amount ?? "0.0");
@@ -35,8 +36,11 @@ class TransactionController with ChangeNotifier {
         totalExpense += double.parse(element.amount ?? "0.0");
       }
     });
+
     total = totalIncome - totalExpense;
+
     fetching = false;
+
     notifyListeners();
   }
 

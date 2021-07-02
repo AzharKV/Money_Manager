@@ -1,7 +1,7 @@
 import 'package:day_manager/constFiles/colors.dart';
 import 'package:day_manager/constFiles/strings.dart';
 import 'package:day_manager/controller/reportController.dart';
-import 'package:day_manager/controller/transactionDetailController.dart';
+import 'package:day_manager/controller/transDetailController.dart';
 import 'package:day_manager/controller/transactionController.dart';
 import 'package:day_manager/customWidgets/snackbar.dart';
 import 'package:day_manager/model/transactionModel.dart';
@@ -12,14 +12,14 @@ import 'package:provider/provider.dart';
 
 class TransactionDetail extends StatelessWidget {
   TransactionDetail({Key? key}) : super(key: key);
-  static TransactionDetailController? transactionDetailController;
+  static TransDetailController? transactionDetailController;
   static TransactionController? transactionController;
   static ReportController? reportController;
 
   @override
   Widget build(BuildContext context) {
     transactionDetailController =
-        Provider.of<TransactionDetailController>(context);
+        Provider.of<TransDetailController>(context);
     transactionController = Provider.of<TransactionController>(context);
     reportController = Provider.of<ReportController>(context);
     return Scaffold(

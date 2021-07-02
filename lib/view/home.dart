@@ -1,5 +1,5 @@
 import 'package:day_manager/constFiles/colors.dart';
-import 'package:day_manager/controller/transactionDetailController.dart';
+import 'package:day_manager/controller/transDetailController.dart';
 import 'package:day_manager/customWidgets/textButton.dart';
 import 'package:day_manager/view/transactionDetail.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +18,8 @@ class Home extends StatelessWidget {
     //HomeController providerWatch = Provider.of<HomeController>(context);
 
 
-    TransactionDetailController transactionDetailController =
-        Provider.of<TransactionDetailController>(context);
+    TransDetailController transDetailController =
+        Provider.of<TransDetailController>(context);
 
     return Scaffold(
       backgroundColor: whiteColor,
@@ -32,25 +32,25 @@ class Home extends StatelessWidget {
             children: <Widget>[
               CustomTextButton(
                 text: "Home",
-                textColor: transactionDetailController.buttonSelected
+                textColor: transDetailController.buttonSelected
                     ? selectedTextButton
                     : nonSelectedTextButton,
                 splash: false,
                 press: () {
-                  if (!transactionDetailController.buttonSelected)
-                    transactionDetailController.changeButton(true);
+                  if (!transDetailController.buttonSelected)
+                    transDetailController.changeHomeNdReportSection(true);
                 },
               ),
               SizedBox(width: 10.0),
               CustomTextButton(
                 text: "Report",
-                textColor: transactionDetailController.buttonSelected
+                textColor: transDetailController.buttonSelected
                     ? nonSelectedTextButton
                     : selectedTextButton,
                 splash: false,
                 press: () {
-                  if (transactionDetailController.buttonSelected)
-                    transactionDetailController.changeButton(false);
+                  if (transDetailController.buttonSelected)
+                    transDetailController.changeHomeNdReportSection(false);
                 },
               ),
             ],
@@ -61,7 +61,7 @@ class Home extends StatelessWidget {
         backgroundColor: primaryColor,
         child: Icon(Icons.add),
         onPressed: () {
-          transactionDetailController.toTransactionDetail(isSaved: false);
+          transDetailController.toTransactionDetail(isSaved: false);
 
           Navigator.push(
               context,
@@ -73,7 +73,7 @@ class Home extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 20.0),
-          child: transactionDetailController.buttonSelected ? HomeScreen() : ReportScreen(),
+          child: transDetailController.buttonSelected ? HomeScreen() : ReportScreen(),
         ),
       ),
     );

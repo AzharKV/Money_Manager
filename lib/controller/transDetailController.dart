@@ -2,7 +2,7 @@ import 'package:day_manager/constFiles/strings.dart';
 import 'package:day_manager/services/databaseHelper.dart';
 import 'package:flutter/cupertino.dart';
 
-class TransactionDetailController with ChangeNotifier {
+class TransDetailController with ChangeNotifier {
   DatabaseHelper? databaseHelper = DatabaseHelper.instance;
 
   TextEditingController titleField = TextEditingController();
@@ -19,7 +19,7 @@ class TransactionDetailController with ChangeNotifier {
 
   bool buttonSelected = true;
 
-  void changeButton(bool value) {
+  void changeHomeNdReportSection(bool value) {
     buttonSelected = value;
     notifyListeners();
   }
