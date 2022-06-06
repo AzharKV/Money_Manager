@@ -10,11 +10,8 @@ Day To Day Money Managing App with Flutter framework.
 <img src="https://github.com/AzharKV/Money_Manager/blob/master/screenshot/20210702_155204.gif?raw=true" width="30%"> -->
 
 
+https://user-images.githubusercontent.com/34079425/172099794-18261fa9-d8fa-4636-addd-877dbf824358.mp4
 
-![home_section](https://user-images.githubusercontent.com/34079425/172099397-693a2fe0-9168-42f2-8793-b76b92d945eb.gif)
+https://user-images.githubusercontent.com/34079425/172099826-fae3fbf9-906d-475d-9f2b-84fe8a7a2d0d.mp4
 
-
-![add_expenses](https://user-images.githubusercontent.com/34079425/172099423-8ede8fb8-bc06-416d-8d7e-1a8c2948f5d4.gif)
-
-
-![remove](https://user-images.githubusercontent.com/34079425/172099431-66f3629e-f793-4785-8222-388c8a0c3205.gif)
+https://user-images.githubusercontent.com/34079425/172099835-b353e3cf-c829-4f37-b7fb-34e77165f0ce.mp4
